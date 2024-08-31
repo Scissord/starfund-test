@@ -1,5 +1,5 @@
 import { Metadata, Viewport } from "next";
-import Home from "@/components/home/home";
+import Product from "@/components/product/product";
 
 export const metadata: Metadata = {
   title: { default: 'Product Test App', template: '%s | Product Test App' },
@@ -38,8 +38,4 @@ export const viewport: Viewport = {
   themeColor: '#FFFFFF',
 };
 
-export default async function HomePage() {
-  return (
-    <Home/>
-  );
-};
+export default Product;

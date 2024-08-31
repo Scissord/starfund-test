@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, RefObject } from "react";
+import { FC } from "react";
 import SidebarTop from "./sidebar/sidebar-top";
 import SidebarMiddle from "./sidebar/sidebar-middle";
 import SidebarBottom from "./sidebar/sidebar-bottom";

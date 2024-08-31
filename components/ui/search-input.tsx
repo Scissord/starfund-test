@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import debounce from 'lodash/debounce';
 import SearchIcon from '../icons/search-icon';
@@ -13,6 +13,20 @@ type Props = {
   page: number | string;
   placeholder: string;
   loading: boolean;
+};
+
+const css = {
+  container: `
+    relative flex items-center
+    justify-between w-full
+  `,
+  input: `
+    p-2 outline-none grow
+    border border-black w-fulls
+  `,
+  rightIcon: `
+    absolute right-5
+  `,
 };
 
 export default function SearchInput(props: Props) {
@@ -32,15 +46,15 @@ export default function SearchInput(props: Props) {
   };
 
   return (
-    <label className={'relative flex items-center justify-between w-[40%]'}>
+    <label className={css.container}>
       <input
         type="text"
-        className='p-2 outline-none grow border border-black w-fulls'
+        className={css.input}
         value={props.value}
         placeholder={props.placeholder ?? 'Поиск...'}
         onChange={handleChange}
       />
-      <div className='absolute right-5'>
+      <div className={css.rightIcon}>
         {props.loading ? (
           <Loader/>
         ): (
@@ -49,4 +63,4 @@ export default function SearchInput(props: Props) {
       </div>
     </label>
   );
-}
+};

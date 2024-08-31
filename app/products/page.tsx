@@ -38,8 +38,4 @@ export const viewport: Viewport = {
   themeColor: '#FFFFFF',
 };
 
-export default async function ProductsPage() {
-  return (
-    <Products/>
-  );
-};
+export default Products;

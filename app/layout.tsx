@@ -60,4 +60,4 @@ export default function RootLayout({
       </Providers>
     </html>
   );
-}
+};

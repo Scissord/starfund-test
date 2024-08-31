@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Product } from '@/types/product';
+import productMapper from '@/utils/productMapper';
 
 export async function GET(request: Request) {
   try {
@@ -10,21 +10,13 @@ export async function GET(request: Request) {
     const response = await fetch(`https://dummyjson.com/products/search?q=${encodedSearch}`);
     const data = await response.json();
 
-    const products: Product[] = data.products.map((product: any) => ({
-      id: product.id,
-      title: product.title,
-      description: product.description,
-      price: product.price,
-      category: product.category,
-      images: product.images,
-      rating: product.rating,
-    }));
+    const products = await productMapper(data);
 
     return NextResponse.json({
       products,
     });
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error search products:', error);
     return NextResponse.error();
   }
 };

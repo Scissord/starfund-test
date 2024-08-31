@@ -1,22 +1,30 @@
 'use client';
 
 import { FC } from 'react'
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { RootState } from '@/store/store';
+import useCart from '@/hooks/useCart';
+
+const css = {
+  container: `
+    p-4 bg-gray-100 border-t w-full
+  `,
+  wrapper: `
+    flex justify-between items-center
+  `,
+};
 
 const SidebarBottom: FC = () => {
-  const cartItems = useAppSelector((state: RootState) => state.cart.items);
-
-  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const {
+    totalQuantity,
+    totalPrice
+  } = useCart(null);
 
   return (
-    <div className="p-4 bg-gray-100 border-t w-full">
-      <div className="flex justify-between items-center">
+    <div className={css.container}>
+      <div className={css.wrapper}>
         <span>Total Items:</span>
         <span>{totalQuantity}</span>
       </div>
-      <div className="flex justify-between items-center">
+      <div className={css.wrapper}>
         <span>Total Price:</span>
         <span>${totalPrice.toFixed(2)}</span>
       </div>
